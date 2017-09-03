@@ -53,7 +53,7 @@ $(function () {
                 type: 'picture',
                 extra: 'height',
                 author: _members.neo,
-                content: "./img/big.jpg"
+                content: "./img/img-2.jpg"
             },
             {
                 type: 'plain',

@@ -58,7 +58,12 @@ img {
 .fr {
   float: right;
 }
-
+.hide {
+  display: none !important;
+}
+.show {
+  display: block !important;
+}
 //聊天区域
 
 .chat {
@@ -252,7 +257,7 @@ img {
 }
 
 .full-pics-white {
-  background-color: #fff;
+  background-color: #ebebeb;
   &::before {
     content: '';
     position: absolute;
@@ -272,6 +277,7 @@ img {
 
 .pic {
   position: fixed;
+  width: 100%;
   top: 50%;
   transform: translateY(-50%);
   img {
@@ -347,6 +353,9 @@ img {
       height: r(144);
       line-height: r(144);
       font-size: r(70);
+      -webkit-touch-callout:none;
+      -webkit-user-select:none;
+      user-select:none;
     }
     .fl {
       .iconfont {
@@ -375,6 +384,9 @@ img {
       height: r(144);
       line-height: r(144);
       font-size: r(70);
+      -webkit-touch-callout:none;
+      -webkit-user-select:none;
+      user-select:none;
     }
     .fl {
       width: 33.33%;

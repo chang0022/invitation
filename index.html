@@ -24,39 +24,41 @@
         </div>
     </div>
 </div>
-<div class="full-pics full-pics-white full-pics-man" id="J_voice" style="display: block">
+<div class="full-pics full-pics-white full-pics-man" id="J_voice">
     <div class="voice-wrap">
         <div class="voice-avatar">
-            <img src="./img/avatar-1.png" width="110px" alt="常鸿飞">
+            <img src="./img/avatar-1.png" alt="常鸿飞">
         </div>
         <div class="voice-user">
             <p class="voice-name">常鸿飞</p>
-            <!--<p class="voice-sub">邀请你进行语音聊天</p>-->
+            <p class="voice-sub">邀请你进行语音聊天</p>
         </div>
         <div class="voice-tips voice-tips-small">
-            <!--<span>对方已切到语音聊天，请确保音量打开并不影响别人</span>-->
-            <span>请用听筒接听</span>
+            <span class="js-callOut" id="J_callOutText">对方已切到语音聊天，请确保音量打开并不影响别人</span>
+            <span class="js-hangUp hide" id="J_hangUpText">~别挂断啊~</span>
+            <span class="js-connect hide" id="J_connectText">请用听筒接听</span>
+            <span class="js-break hide" id="J_breakText">通话结束</span>
         </div>
-        <!--<div class="voice-operation">-->
-            <!--<div class="fl">-->
-                <!--<p class="iconfont icon-hang"></p>-->
-                <!--<p>挂断</p>-->
-            <!--</div>-->
-            <!--<div class="fr">-->
-                <!--<p class="iconfont icon-dianhua"></p>-->
-                <!--<p>接听</p>-->
-            <!--</div>-->
-        <!--</div>-->
-        <div class="voice-time">
-            <p>00:01</p>
+        <div class="voice-operation js-callOut">
+            <div class="fl">
+                <p class="iconfont icon-hang" id="J_hangUp"></p>
+                <p>挂断</p>
+            </div>
+            <div class="fr">
+                <p class="iconfont icon-dianhua" id="J_connect"></p>
+                <p>接听</p>
+            </div>
         </div>
-        <div class="voice-operation-ing">
+        <div class="voice-time js-connect hide">
+            <p id="J_voiceDuration">00:00</p>
+        </div>
+        <div class="voice-operation-ing js-connect hide">
             <div class="fl">
                 <p class="iconfont icon-jingyin"></p>
                 <p>静音</p>
             </div>
             <div class="fl red">
-                <p class="iconfont icon-hang"></p>
+                <p class="iconfont icon-hang" id="J_break"></p>
                 <p>挂断</p>
             </div>
             <div class="fl">
@@ -68,6 +70,15 @@
 </div>
 <audio id="message-push-music" preload>
     <source src="./music/msg.mp3" type="audio/mp3">
+</audio>
+<audio id="call-out-music" loop preload >
+    <source src="./music/wait.mp3" type="audio/mp3">
+</audio>
+<audio id="connect-voice" preload >
+    <source src="./music/RSS.mp3" type="audio/mp3">
+</audio>
+<audio id="cut-voice" preload >
+    <source src="./music/cut.mp3" type="audio/mp3">
 </audio>
 </body>
 <script id="tpl" type="text/html">

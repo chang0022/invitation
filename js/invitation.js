@@ -1,4 +1,3 @@
-
 $(function () {
     FastClick.attach(document.body);
 
@@ -65,7 +64,8 @@ $(function () {
         _dialog.d1 = [
             {
                 type: 'voice',
-                author: _members.neo
+                author: _members.neo,
+                content: voiceDuration
             },
             {
                 type: 'map',
@@ -121,8 +121,8 @@ $(function () {
                     // 显示 message
                     var messageHtml = template('tpl', message.el);
                     $chat.append(messageHtml);
-                    if(message.el['type'] === 'picture' || message.el['type'] === 'map') {
-                        $chat.imagesLoaded(function() {
+                    if (message.el['type'] === 'picture' || message.el['type'] === 'map') {
+                        $chat.imagesLoaded(function () {
                             $chat.find('.picture').removeClass('is-loading');
                         });
                     }
@@ -133,7 +133,7 @@ $(function () {
                     var timeH = $('.chat-time').outerHeight(true);
                     var viewH = $content.height();
                     var contentH = $chat.height();
-                    // $("#message-push-music")[0].play();
+                    $("#message-push-music")[0].play();
                     if (contentH + timeH > viewH) {
                         $content.scrollTop(contentH + timeH - viewH);
                     }
@@ -158,10 +158,101 @@ $(function () {
         loop(0);
     }
 
+    var $voice = $('#J_voice');
+    var $callMusic = $('#call-out-music');
+    var Voice = {
+        time: null,
+        showVoice: function () {
+            $voice.show();
+            $callMusic[0].play();
+        },
+        hangUp: function () {
+            var self = this;
+            $('#J_hangUp').on('touchstart', function () {
+                self.textChange();
+                return false;
+            }).on('touchend', function () {
+                self.textChange();
+                return false;
+            });
+            $('#J_break').on('touchstart', function () {
+                self.textChangConnect();
+                return false;
+            }).on('touchend', function () {
+                self.textChangConnect();
+                return false;
+            });
+        },
+        connectVoice: function () {
+            var self = this;
+            $('#J_connect').on('touchend', function () {
+                $callMusic[0].pause();
+                $('.js-callOut').addClass('hide');
+                $('.js-connect').removeClass('hide');
+                self.playVoice();
+            });
+        },
+        textChange: function () {
+            $('#J_callOutText').toggleClass('hide');
+            $('#J_hangUpText').toggleClass('hide');
+        },
+        textChangConnect: function () {
+            $('#J_connectText').toggleClass('hide');
+            $('#J_hangUpText').toggleClass('hide');
+        },
+        playVoice: function () {
+            var self = this;
+            var voice = $('#connect-voice');
+            voice[0].play();
+            // voiceDuration = parseInt(voice[0].duration);
+            self.timeStart();
+            voice.on('ended', function () {
+                self.timeOver();
+                self.breakVoice();
+            });
+        },
+        timeStart: function () {
+            var self = this;
+            var sec = 0;
+            var $voice = $('#J_voiceDuration');
+            self.time = setInterval(function () {
+                sec += 1;
+                if (sec.toString().length < 2) {
+                    $voice.text('00:0'+sec)
+                } else {
+                    $voice.text('00:'+sec)
+                }
+            }, 1000);
+
+        },
+        breakVoice: function () {
+            var self = this;
+            $('#J_breakText').removeClass('hide').siblings().addClass('hide');
+            var $cutVoice = $('#cut-voice');
+            $cutVoice[0].play();
+            $cutVoice.on('ended', function () {
+                self.closeVoice();
+            });
+        },
+        timeOver: function () {
+            var self = this;
+            clearInterval(self.time);
+        },
+        closeVoice: function () {
+            $voice.hide();
+            showDialog(_dialog['d1']);
+        },
+        init: function () {
+            this.hangUp();
+            this.connectVoice();
+        }
+    };
+
+    Voice.init();
 
     geneDialog();
     showDialog(_dialog['d0'], function () {
-        console.info('It\'s time for me');
+        Voice.showVoice();
     });
 
 
@@ -173,8 +264,8 @@ $(function () {
         var imgUrl = $target.attr('src');
         if (imgUrl) {
             // 全屏显示照片
-            $pic.append('<img src="'+imgUrl+'" style="display: none;">');
-            $pic.imagesLoaded(function() {
+            $pic.append('<img src="' + imgUrl + '" style="display: none;">');
+            $pic.imagesLoaded(function () {
                 $pic.find('.loading').hide();
                 $pic.find('img').show();
             });

@@ -43,6 +43,14 @@ img {
   float: right;
 }
 
+.hide {
+  display: none !important;
+}
+
+.show {
+  display: block !important;
+}
+
 .chat {
   padding: 0.33rem 0.2rem 1.67rem;
   height: 100%;
@@ -218,7 +226,7 @@ img {
 }
 
 .full-pics-white {
-  background-color: #fff;
+  background-color: #ebebeb;
 }
 .full-pics-white::before {
   content: '';
@@ -236,6 +244,7 @@ img {
 
 .pic {
   position: fixed;
+  width: 100%;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -315,6 +324,9 @@ img {
   height: 1.92rem;
   line-height: 1.92rem;
   font-size: 0.93rem;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .voice-wrap .voice-operation .fl .iconfont {
   background: #da4a4a;
@@ -341,6 +353,9 @@ img {
   height: 1.92rem;
   line-height: 1.92rem;
   font-size: 0.93rem;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .voice-wrap .voice-operation-ing .fl {
   width: 33.33%;

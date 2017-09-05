@@ -16,20 +16,17 @@ $(function () {
         };
         _members = $.extend(_members, defaultMembers);
 
-        // 引导对话
         _dialog.d0 = [
-            {
-                type: 'plain',
-                author: _members.neo,
-                content: "Hi，我。 常鸿飞",
-                callBack: 'haha',
-                pause: 2000
-            },
             {
                 type: 'picture',
                 extra: 'emoji',
                 author: _members.neo,
                 content: "./img/wai.gif"
+            },
+            {
+                type: 'plain',
+                author: _members.neo,
+                content: "Hi，我。 常鸿飞"
             },
             {
                 type: 'plain',
@@ -68,7 +65,7 @@ $(function () {
             {
                 type: 'plain',
                 author: _members.neo,
-                content: "2017年10月"
+                content: "2017年10月5日 11点58分<br>濮阳市 瑞丰园 三楼"
             },
             {
                 type: 'map',
@@ -226,9 +223,9 @@ $(function () {
             self.time = setInterval(function () {
                 sec += 1;
                 if (sec.toString().length < 2) {
-                    $voice.text('00:0'+sec)
+                    $voice.text('00:0' + sec)
                 } else {
-                    $voice.text('00:'+sec)
+                    $voice.text('00:' + sec)
                 }
             }, 1000);
 

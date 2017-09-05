@@ -126,9 +126,15 @@ img {
 }
 .message-wrap .message .m-content .bubble .confirm .confirm-hd {
   padding: 0.13rem 0.27rem;
-  font-size: 20px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.message-wrap .message .m-content .bubble .confirm .confirm-hd img {
+  width: 18px;
+  vertical-align: text-bottom;
 }
 .message-wrap .message .m-content .bubble .confirm button {
+  font-size: 14px;
   margin-bottom: 0.27rem;
   text-align: left;
   padding: 0.4rem 0.27rem;
@@ -136,6 +142,9 @@ img {
   background: #f1f5fe;
   border: none;
   border-radius: 6px;
+}
+.message-wrap .message .m-content .bubble .confirm button i {
+  float: right;
 }
 .message-wrap .message .m-content .bubble .confirm .button-blue {
   background: #03a9f4;
@@ -197,6 +206,11 @@ img {
   }
   100% {
     transform: translate(0, 0);
+  }
+}
+@media screen and (device-aspect-ratio: 40 / 71) {
+  .message-wrap .message .m-content .bubble .confirm .confirm-hd {
+    font-size: 15px;
   }
 }
 .self .m-avatar {

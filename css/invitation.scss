@@ -142,6 +142,10 @@ img {
             padding: r(10) r(20);
             font-size: 16px;
             font-weight: bold;
+            img {
+              width: 18px;
+              vertical-align: text-bottom;
+            }
           }
           button {
             font-size: 14px;
@@ -152,6 +156,9 @@ img {
             background: #f1f5fe;
             border: none;
             border-radius: 6px;
+            i {
+              float: right;
+            }
           }
           .button-blue {
             background: #03a9f4;
@@ -233,7 +240,11 @@ img {
     }
   }
 }
-
+@media screen and (device-aspect-ratio: 40/71) {
+  .message-wrap .message .m-content .bubble .confirm .confirm-hd {
+    font-size: 15px;
+  }
+}
 .self {
   .m-avatar {
     float: left;

@@ -1,7 +1,6 @@
 $(function () {
     FastClick.attach(document.body);
 
-
     var GUEST = {
         id: 'other', // 写死的，不用改
         name: '' || '', // 用户昵称
@@ -64,13 +63,21 @@ $(function () {
         _dialog.d1 = [
             {
                 type: 'voice',
+                author: _members.neo
+            },
+            {
+                type: 'plain',
                 author: _members.neo,
-                content: voiceDuration
+                content: "2017年10月"
             },
             {
                 type: 'map',
                 author: _members.neo,
                 content: "./img/map.png"
+            },
+            {
+                type: 'invite',
+                author: _members.neo
             }
         ]
     }
@@ -163,6 +170,7 @@ $(function () {
     var Voice = {
         time: null,
         showVoice: function () {
+            $fullPics.trigger('click');
             $voice.show();
             $callMusic[0].play();
         },
@@ -251,9 +259,9 @@ $(function () {
     Voice.init();
 
     geneDialog();
-    showDialog(_dialog['d0'], function () {
-        Voice.showVoice();
-    });
+    // showDialog(_dialog['d0'], function () {
+    //     Voice.showVoice();
+    // });
 
 
     var $fullPics = $('#J_fullPics');
@@ -275,5 +283,9 @@ $(function () {
         $fullPics.hide();
         $pic.find('.loading').show();
         $pic.find('img').remove();
+    }).on('click', '#J_showMap', function () {
+        $('#J_iframe').addClass('bounceInUp');
+    }).on('click', '#J_closeLayer', function () {
+        $('#J_iframe').removeClass('bounceInUp');
     });
 });

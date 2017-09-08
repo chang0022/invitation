@@ -691,3 +691,117 @@ img {
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
+.layer-form {
+  //display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, .6);
+  cursor: pointer;
+  overflow: hidden;
+  .layer-warp {
+    width: 100%;
+    position: absolute;
+    top: 32%;
+    transform: translateY(-32%);
+  }
+  .attend-form, .blessing-form {
+    padding-top: r(190);
+    margin: 0 auto;
+    width: r(660);
+    height: r(435);
+    background: #eec273 url("../img/msg-bg.png") no-repeat;
+    background-size: cover;
+  }
+  .blessing-form {
+    padding-top: r(170);
+
+  }
+}
+.weui-cells {
+  padding: 0 r(72);
+  .weui-cell {
+    background: #fff;
+    font-size: 15px;
+    padding: 10px 15px;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    border: 1px solid transparent;
+  }
+  .weui-label {
+    display: block;
+    width: 105px;
+    word-wrap: break-word;
+    color: #d3381c;
+  }
+  .weui-cell__bd {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+  }
+  .weui-input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    -webkit-appearance: none;
+    background-color: transparent;
+    font-size: inherit;
+    color: inherit;
+    height: 1.47058824em;
+    line-height: 1.47058824;
+  }
+  .weui-select {
+    -webkit-appearance: none;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    width: 100%;
+    font-size: inherit;
+    height: 15px;
+    line-height: 15px;
+    position: relative;
+    z-index: 1;
+    padding-right: 30px;
+  }
+  .weui-textarea {
+    display: block;
+    border: 0;
+    resize: none;
+    width: 100%;
+    color: inherit;
+    font-size: 1em;
+    line-height: inherit;
+    outline: 0;
+  }
+}
+.weui-cell_select {
+  .weui-cell__bd::after {
+    content: " ";
+    display: inline-block;
+    height: 6px;
+    width: 6px;
+    border-width: 2px 2px 0 0;
+    border-color: #C8C8CD;
+    border-style: solid;
+    -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    margin-top: -4px;
+  }
+}
+
+@media screen and (device-aspect-ratio: 40/71) {
+  .blessing-form .weui-cell {
+    padding: 8px 15px;
+  }
+}

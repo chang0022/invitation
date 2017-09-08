@@ -256,9 +256,9 @@ $(function () {
     Voice.init();
 
     geneDialog();
-    showDialog(_dialog['d0'], function () {
-        Voice.showVoice();
-    });
+    // showDialog(_dialog['d0'], function () {
+    //     Voice.showVoice();
+    // });
 
 
     var $fullPics = $('#J_fullPics');

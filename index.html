@@ -87,37 +87,42 @@
 </div>
 <div class="layer-form">
     <div class="layer-warp">
-        <!--<div class="attend-form weui-cells">-->
+        <div class="attend-form">
+            <div class="weui-cells">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">宾客姓名</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" type="text" placeholder="请输入姓名">
+                    </div>
+                </div>
+                <div class="weui-cell weui-cell_select">
+                    <div class="weui-cell__hd"><label class="weui-label">赴宴人数</label></div>
+                    <div class="weui-cell__bd">
+                        <select class="weui-select" name="attendNumber" id="x">
+                            <option value="1">一位</option>
+                            <option value="2">两位</option>
+                            <option value="3">三位</option>
+                            <option value="4">四位</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="blessing-form weui-cells">-->
             <!--<div class="weui-cell">-->
                 <!--<div class="weui-cell__hd"><label class="weui-label">宾客姓名</label></div>-->
                 <!--<div class="weui-cell__bd">-->
                     <!--<input class="weui-input" type="text" placeholder="请输入姓名">-->
                 <!--</div>-->
             <!--</div>-->
-            <!--<div class="weui-cell weui-cell_select">-->
-                <!--<div class="weui-cell__hd"><label class="weui-label">赴宴人数</label></div>-->
+            <!--<div class="weui-cell">-->
                 <!--<div class="weui-cell__bd">-->
-                    <!--<select class="weui-select" name="attendNumber" id="x">-->
-                        <!--<option value="1">一位</option>-->
-                        <!--<option value="2">两位</option>-->
-                        <!--<option value="3">三位</option>-->
-                        <!--<option value="4">四位</option>-->
-                    <!--</select>-->
+                    <!--<textarea class="weui-textarea" placeholder="写下祝福" rows="2"></textarea>-->
                 <!--</div>-->
             <!--</div>-->
         <!--</div>-->
-        <div class="blessing-form weui-cells">
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">宾客姓名</label></div>
-                <div class="weui-cell__bd">
-                    <input class="weui-input" type="text" placeholder="请输入姓名">
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__bd">
-                    <textarea class="weui-textarea" placeholder="写下祝福" rows="2"></textarea>
-                </div>
-            </div>
+        <div class="button-group">
+            <a href="javascript:;" class="btn-confirm"></a>
         </div>
     </div>
 </div>

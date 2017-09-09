@@ -240,11 +240,13 @@ img {
     }
   }
 }
+
 @media screen and (device-aspect-ratio: 40/71) {
   .message-wrap .message .m-content .bubble .confirm .confirm-hd {
     font-size: 15px;
   }
 }
+
 .self {
   .m-avatar {
     float: left;
@@ -691,6 +693,7 @@ img {
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
+
 .layer-form {
   //display: none;
   position: absolute;
@@ -709,7 +712,7 @@ img {
     transform: translateY(-32%);
   }
   .attend-form, .blessing-form {
-    padding-top: r(190);
+    padding: r(110) r(72) 0;
     margin: 0 auto;
     width: r(660);
     height: r(435);
@@ -717,14 +720,28 @@ img {
     background-size: cover;
   }
   .blessing-form {
-    padding-top: r(170);
-
+    padding-top: r(110);
   }
 }
+
 .weui-cells {
-  padding: 0 r(72);
+  background: hsla(0, 0%, 100%, .3);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px hsla(0, 0%, 100%, .3) inset, 0 .5em 1em rgba(0, 0, 0, 0.6);
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: -30px;
+    z-index: -1;
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
+  }
   .weui-cell {
-    background: #fff;
     font-size: 15px;
     padding: 10px 15px;
     position: relative;
@@ -782,6 +799,7 @@ img {
     outline: 0;
   }
 }
+
 .weui-cell_select {
   .weui-cell__bd::after {
     content: " ";
@@ -789,7 +807,7 @@ img {
     height: 6px;
     width: 6px;
     border-width: 2px 2px 0 0;
-    border-color: #C8C8CD;
+    border-color: #000;
     border-style: solid;
     -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
     transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);

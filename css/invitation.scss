@@ -180,14 +180,20 @@ img {
             display: block;
             width: 100%;
           }
+          & > span {
+            display: none;
+          }
         }
         .is-loading {
           border-radius: 7px;
+          display: table-cell;
+          text-align: center;
+          vertical-align: middle;
           border: 1px solid #d4d4d4;
           background-color: #fff;
-          background-image: url("../img/loading.gif");
-          background-repeat: no-repeat;
-          background-position: center center;
+          & > span {
+            display: inline-block;
+          }
         }
         .picture-emoji {
           &.is-loading {
@@ -316,9 +322,14 @@ img {
     filter: blur(50px);
     z-index: -1;
   }
-  &.full-pics-man {
+  &.full-pics-neo {
     &::before {
       background: url("../img/avatar-1.png") 0 / cover fixed;
+    }
+  }
+  &.full-pics-man {
+    &::before {
+      background: url("../img/avatar-2.jpg") 0 / cover fixed;
     }
   }
 }
@@ -328,6 +339,7 @@ img {
   width: 100%;
   top: 50%;
   transform: translateY(-50%);
+  text-align: center;
   img {
     width: 100%;
     margin: 0 auto;
@@ -451,117 +463,6 @@ img {
   }
 }
 
-.loader:after, .loader:before {
-  content: ''
-}
-
-.loader, .loader:after, .loader:before {
-  width: 4px;
-  height: 20px;
-  background: #ff6700
-}
-
-.loader {
-  margin: 0 auto;
-  overflow: visible;
-  -webkit-animation-delay: 0s;
-  animation-delay: 0s;
-  -webkit-transform: scale(1, 1);
-  -ms-transform: scale(1, 1);
-  transform: scale(1, 1)
-}
-
-.loader, .loader:after, .loader:before {
-  -webkit-transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
-  -webkit-animation-name: loader;
-  animation-name: loader;
-  -webkit-animation-duration: .3s;
-  animation-duration: .3s;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear;
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-  -webkit-animation-direction: alternate-reverse;
-  animation-direction: alternate-reverse
-}
-
-.loader:after, .loader:before {
-  position: absolute;
-  left: 50%;
-  top: 50%
-}
-
-.loader:before {
-  margin: -10px 0 0 -10px;
-  -webkit-animation-delay: .25s;
-  animation-delay: .25s;
-  -webkit-transform: scale(1, .3);
-  -ms-transform: scale(1, .3);
-  transform: scale(1, .3)
-}
-
-.loader:after {
-  margin: -10px 0 0 6px;
-  -webkit-animation-delay: .5s;
-  animation-delay: .5s;
-  -webkit-transform: scale(1, .5);
-  -ms-transform: scale(1, .5);
-  transform: scale(1, .5)
-}
-
-.loader-white, .loader-white:after, .loader-white:before {
-  background: #fff
-}
-
-@-webkit-keyframes loader {
-  0% {
-    -webkit-transform: scale(1, .5);
-    transform: scale(1, .5);
-    opacity: .2
-  }
-
-  100% {
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    opacity: 1
-  }
-}
-
-@keyframes loader {
-  0% {
-    -webkit-transform: scale(1, .5);
-    transform: scale(1, .5);
-    opacity: .2
-  }
-
-  100% {
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    opacity: 1
-  }
-}
-
-.loading, .loading .loader {
-  left: 50%;
-  top: 50%;
-  position: absolute
-}
-
-.loading {
-  height: r(104);
-  width: r(104);
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%)
-}
-
-.loading .loader {
-  margin-top: -.313rem;
-  margin-left: -.063rem
-}
-
 //震动显示
 @keyframes showSweetAlert {
   0% {
@@ -593,35 +494,30 @@ img {
   }
 }
 
-@keyframes hideSweetAlert {
-  0% {
-    transform: scale(1);
+@-webkit-keyframes layer-shake {
+  0%, 100% {
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
   }
-  45% {
-    transform: scale(1.05);
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translateX(-54%);
+    transform: translateX(-54%);
   }
-  80% {
-    transform: scale(.95);
-  }
-  100% {
-    transform: scale(0);
-    opacity: 0;
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translateX(-46%);
+    transform: translateX(-46%);
   }
 }
 
-@-webkit-keyframes hideSweetAlert {
-  0% {
-    -webkit-transform: scale(1);
+@keyframes layer-shake {
+  0%, 100% {
+    transform: translateX(-50%);
   }
-  45% {
-    -webkit-transform: scale(1.05);
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-54%);
   }
-  80% {
-    -webkit-transform: scale(.95);
-  }
-  100% {
-    -webkit-transform: scale(0);
-    opacity: 0;
+  20%, 40%, 60%, 80% {
+    transform: translateX(-46%);
   }
 }
 
@@ -695,14 +591,14 @@ img {
 }
 
 .layer-form {
-  //display: none;
+  display: none;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: rgba(0, 0, 0, .6);
+  background-color: rgba(0, 0, 0, .95);
   cursor: pointer;
   overflow: hidden;
   .layer-warp {
@@ -711,17 +607,79 @@ img {
     top: 32%;
     transform: translateY(-32%);
   }
-  .attend-form, .blessing-form {
+  .form-wrap {
     padding: r(110) r(72) 0;
     margin: 0 auto;
     width: r(660);
     height: r(435);
     background: #eec273 url("../img/msg-bg.png") no-repeat;
     background-size: cover;
+    animation: showSweetAlert .3s;
+    -webkit-animation: showSweetAlert .3s;
   }
-  .blessing-form {
-    padding-top: r(110);
+  .form-top-wrap {
+    padding-top: r(70);
   }
+  .button-group {
+    margin-top: r(60);
+    &::after {
+      @include clearfix();
+    }
+    a {
+      margin: 0 r(40);
+      display: block;
+      width: r(140);
+      height: r(60);
+    }
+    .btn-return {
+      float: left;
+      background: url("../img/return.png") no-repeat;
+      background-size: cover;
+    }
+    .btn-confirm {
+      display: none;
+      float: right;
+      background: url("../img/confirm.png") no-repeat;
+      background-size: cover;
+    }
+  }
+  .attend-form, .blessing-form {
+    display: none;
+  }
+}
+
+.weui-toast {
+  position: fixed;
+  width: 7.6em;
+  left: 50%;
+  background: hsla(0, 0%, 7%, .7);
+  text-align: center;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 17px;
+}
+.weui_loading_toast {
+  -webkit-transition-duration: .2s;
+  transition-duration: .2s;
+  opacity: 0;
+  -webkit-transform: scale(0.9) translate(-50%, -50%);
+  transform: scale(0.9) translate(-50%, -50%);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  visibility: hidden;
+  margin: 0;
+  top: 45%;
+  z-index: 1000;
+}
+.weui-toast--visible {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: scale(1) translate(-50%, -50%);
+  transform: scale(1) translate(-50%, -50%);
+  -webkit-animation: layer-shake .3s;
+  animation: layer-shake .3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
 .weui-cells {
@@ -797,6 +755,7 @@ img {
     font-size: 1em;
     line-height: inherit;
     outline: 0;
+    background-color: transparent;
   }
 }
 
@@ -817,8 +776,27 @@ img {
     margin-top: -4px;
   }
 }
-
+.layer-loading {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 9999;
+  & > span {
+    margin: 0 auto;
+  }
+  &.open{
+    display: flex;
+  }
+}
 @media screen and (device-aspect-ratio: 40/71) {
+  .layer-form .button-group {
+    margin-top: r(40);
+  }
   .blessing-form .weui-cell {
     padding: 8px 15px;
   }

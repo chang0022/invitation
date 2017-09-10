@@ -1,58 +1,65 @@
 $(function () {
     FastClick.attach(document.body);
-
+    var master = window.location.href.indexOf('man') > -1 ? 1 : 0;
     var GUEST = {
-        id: 'other', // 写死的，不用改
-        name: '' || '', // 用户昵称
-        avatar: '' || './img/avatar-2.jpg' // 用户头像图片 url
+        id: 'other',
+        name: '' || '我的朋友',
+        avatar: '' || './img/avatar-2.jpg'
     };
 
     var _dialog = {};
     var _members = {};
 
-    function geneDialog(userName) {
+    function geneDialog(user) {
+        var _master = {};
         var defaultMembers = {
-            neo: {id: 'neo', name: '常鸿飞', avatar: './img/avatar-1.jpg'}
+            neo: {id: 'neo', name: '常鸿飞', avatar: './img/avatar-1.png'},
+            man: {id: 'neo', name: '冯蔓', avatar: './img/avatar-2.jpg'}
         };
         _members = $.extend(_members, defaultMembers);
 
+        if (user) {
+            _master = _members.man;
+        } else {
+            _master = _members.neo;
+        }
         _dialog.d0 = [
             {
                 type: 'picture',
                 extra: 'emoji',
-                author: _members.neo,
+                author: _master,
                 content: "./img/wai.gif"
             },
             {
                 type: 'plain',
-                author: _members.neo,
-                content: "Hi，我。 常鸿飞"
+                author: _master,
+                content: "Hi，我。" + _master.name
             },
             {
                 type: 'plain',
-                author: _members.neo,
+                author: _master,
                 content: "告诉你一件事，我要结婚了"
             },
             {
                 type: 'plain',
-                author: _members.neo,
+                author: _master,
                 content: "真的，真的。"
             },
             {
                 type: 'picture',
                 extra: 'width',
-                author: _members.neo,
+                author: _master,
                 content: "./img/img-1.jpg"
             },
             {
                 type: 'picture',
                 extra: 'height',
-                author: _members.neo,
+                author: _master,
                 content: "./img/img-2.jpg"
             },
             {
                 type: 'plain',
-                author: _members.neo,
+                author: _master,
                 content: "我还是语音和你说吧。"
             }
         ];
@@ -60,21 +67,21 @@ $(function () {
         _dialog.d1 = [
             {
                 type: 'voice',
-                author: _members.neo
+                author: _master
             },
             {
                 type: 'plain',
-                author: _members.neo,
+                author: _master,
                 content: "2017年10月5日 11点58分<br>濮阳市 瑞丰园 三楼"
             },
             {
                 type: 'map',
-                author: _members.neo,
+                author: _master,
                 content: "./img/map.png"
             },
             {
                 type: 'invite',
-                author: _members.neo
+                author: _master
             }
         ]
     }
@@ -127,11 +134,10 @@ $(function () {
                     $chat.append(messageHtml);
                     if (message.el['type'] === 'picture' || message.el['type'] === 'map') {
                         $chat.imagesLoaded(function () {
-                            $chat.find('.picture').removeClass('is-loading');
+                            $chat.find('.picture').removeClass('is-loading')
+                                .find('span').remove();
                         });
                     }
-
-
                     // 自动滚动
                     // 窗口的高度
                     var timeH = $('.chat-time').outerHeight(true);
@@ -141,14 +147,12 @@ $(function () {
                     if (contentH + timeH > viewH) {
                         $content.scrollTop(contentH + timeH - viewH);
                     }
-
                     // 特别语句的特殊delay
                     if (message.el.pause !== undefined) {
                         loop(message.el.pause);
                     } else {
                         loop();
                     }
-
                     // 指向下一句
                     message = message._next;
 
@@ -209,7 +213,6 @@ $(function () {
             var self = this;
             var voice = $('#connect-voice');
             voice[0].play();
-            // voiceDuration = parseInt(voice[0].duration);
             self.timeStart();
             voice.on('ended', function () {
                 self.timeOver();
@@ -255,10 +258,11 @@ $(function () {
 
     Voice.init();
 
-    geneDialog();
-    // showDialog(_dialog['d0'], function () {
-    //     Voice.showVoice();
-    // });
+    geneDialog(master);
+
+    showDialog(_dialog['d0'], function () {
+        Voice.showVoice();
+    });
 
 
     var $fullPics = $('#J_fullPics');
@@ -268,10 +272,9 @@ $(function () {
         var $target = $(this);
         var imgUrl = $target.attr('src');
         if (imgUrl) {
-            // 全屏显示照片
             $pic.append('<img src="' + imgUrl + '" style="display: none;">');
             $pic.imagesLoaded(function () {
-                $pic.find('.loading').hide();
+                $pic.find('.heartbeat-loader').hide();
                 $pic.find('img').show();
             });
             $fullPics.show();
@@ -284,5 +287,86 @@ $(function () {
         $('#J_iframe').addClass('bounceInUp');
     }).on('click', '#J_closeLayer', function () {
         $('#J_iframe').removeClass('bounceInUp');
+    }).on('click', '#J_attend', function () {
+        invitationForm.showAttend();
+    }).on('click', '#J_blessing', function () {
+        invitationForm.showBlessing();
+    }).on('click', '#J_returnBtn', function () {
+        invitationForm.closeForm();
     });
+
+    var $layerForm = $('.layer-form');
+    var $attendForm = $('.attend-form');
+    var $blessingForm = $('.blessing-form');
+
+    var invitationForm = {
+        showAttend: function () {
+            $layerForm.show();
+            $attendForm.show();
+            $('#J_attendBtn').show();
+        },
+        showBlessing: function () {
+            $layerForm.find('.form-wrap').addClass('form-top-wrap');
+            $layerForm.show();
+            $blessingForm.show();
+            $('#J_blessingBtn').show();
+        },
+        closeForm: function () {
+            $layerForm.hide();
+            $attendForm.hide();
+            $blessingForm.hide();
+            $('.btn-confirm').hide();
+            $layerForm.find('.form-wrap').removeClass('form-top-wrap');
+        }
+    };
+
+
+    $('#J_attendBtn').click(function () {
+        var form = $('.attend-form');
+        var data = {};
+        data.name = form.find('input[name="vip"]').val();
+        data.number = form.find('input[name="attendNumber"]').val();
+        data.type = 1;
+        if (!name) return errorMsg('姓名不能为空');
+        ajaxData(data);
+    });
+
+    $('#J_blessingBtn').click(function () {
+        var form = $('.blessing-form');
+        var data = {};
+        data.name = form.find('input[name="vip"]').val();
+        data.number = form.find('input[name="blessing"]').val();
+        data.type = 2;
+        if (!name) return errorMsg('姓名不能为空');
+        ajaxData(data);
+    });
+
+    function ajaxData(data) {
+        $('.layer-loading').addClass('open');
+        $.ajax('/api/test', {
+            data: data,
+            method: 'POST',
+            dataType: 'json',
+            success: function (res) {
+                $('.layer-loading').removeClass('open');
+                if (res.code !== 200) {
+                    errorMsg('抱歉，服务器异常~');
+                    return '';
+                }
+                window.location.href = '/invitation/poster.html';
+            },
+            error: function () {
+                $('.layer-loading').removeClass('open');
+                errorMsg('抱歉，服务器异常~');
+            }
+        });
+    }
+
+    function errorMsg(msg) {
+        $('.weui-toast').text(msg).addClass('weui-toast--visible')
+            .delay(1500)
+            .queue(function () {
+                $(this).removeClass('weui-toast--visible').dequeue();
+            })
+    }
 });

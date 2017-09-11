@@ -10,7 +10,7 @@ html {
 html * {
   outline: 0;
   -webkit-text-size-adjust: none;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 html, body {
@@ -749,4 +749,74 @@ img {
   .blessing-form .weui-cell {
     padding: 8px 15px;
   }
+}
+.poster-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: url("../img/poster/bg.jpg") no-repeat;
+  background-size: cover;
+}
+
+.scene-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.scene-mask {
+  position: relative;
+  width: 10rem;
+  height: 17.79rem;
+}
+.scene-mask .scene-matting {
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  width: 100%;
+}
+.scene-mask .countdown-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.scene-mask .countdown-content .dash {
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  margin: 0 0.21rem;
+  height: 1.69rem;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: .3em;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3) inset, 0 0.5em 1em rgba(0, 0, 0, 0.6);
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+.scene-mask .countdown-content .dash .dash_title {
+  position: absolute;
+  display: block;
+  bottom: -0.64rem;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+  color: #2f2e2e;
+}
+.scene-mask .countdown-content .dash .dash_title-white {
+  color: #fff;
+}
+.scene-mask .countdown-content .dash .digit {
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  float: left;
+  width: 50%;
+  margin-top: 0.4rem;
+  height: 0.89rem;
+  line-height: 0.89rem;
+  text-align: center;
+  color: #2f2e2e;
+}
+.scene-mask .countdown-content .dash .digit ~ .digit {
+  border-left: 1px solid #ccc;
 }

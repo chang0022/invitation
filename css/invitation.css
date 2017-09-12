@@ -10,7 +10,7 @@ html {
 html * {
   outline: 0;
   -webkit-text-size-adjust: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 
 html, body {
@@ -771,7 +771,7 @@ img {
 }
 .scene-mask .scene-matting {
   position: absolute;
-  bottom: 10%;
+  bottom: 15%;
   left: 0;
   width: 100%;
 }
@@ -819,4 +819,40 @@ img {
 }
 .scene-mask .countdown-content .dash .digit ~ .digit {
   border-left: 1px solid #ccc;
+}
+
+.barrager {
+  width: 100%;
+  height: 8.89rem;
+}
+.barrager .barrager-item {
+  padding: .1em .3em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: .3em;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3) inset, 0 0.5em 1em rgba(0, 0, 0, 0.6);
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+  -webkit-animation: translateX 5s cubic-bezier(0.65, 0.65, 1, 0);
+  animation: translateX 5s cubic-bezier(0.65, 0.65, 1, 0);
+  transform: translate3d(10rem, 0, 0);
+}
+
+@-webkit-keyframes translateX {
+  0% {
+    -webkit-transform: translate3d(10rem, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(-10rem, 0, 0);
+  }
+}
+@keyframes translateX {
+  0% {
+    transform: translate3d(10rem, 0, 0);
+  }
+  100% {
+    transform: translate3d(-10rem, 0, 0);
+  }
 }

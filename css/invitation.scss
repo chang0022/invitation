@@ -826,7 +826,7 @@ img {
   height: r(1334);
   .scene-matting {
     position: absolute;
-    bottom: 10%;
+    bottom: 15%;
     left: 0;
     width: 100%;
   }
@@ -867,7 +867,7 @@ img {
         width: 50%;
         margin-top: r(30);
         height: r(67);
-        line-height:r(67);
+        line-height: r(67);
         text-align: center;
         color: #2f2e2e;
         & ~ .digit {
@@ -876,5 +876,43 @@ img {
       }
     }
 
+  }
+}
+
+.barrager {
+  width: 100%;
+  height: r(667);
+  .barrager-item {
+    padding: .1em .3em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+    background: hsla(0, 0%, 100%, .6);
+    border-radius: .3em;
+    box-shadow: 0 0 0 1px hsla(0, 0%, 100%, .3) inset,
+    0 .5em 1em rgba(0, 0, 0, 0.6);
+    text-shadow: 0 1px 1px hsla(0, 0%, 100%, .3);
+    -webkit-animation: translateX 5s cubic-bezier(.65, .65, 1, 0);
+    animation: translateX 5s cubic-bezier(.65, .65, 1, 0);
+    transform: translate3d(r(750), 0, 0);
+  }
+}
+
+@-webkit-keyframes translateX {
+  0% {
+    -webkit-transform: translate3d(r(750), 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(r(-750), 0, 0);
+  }
+}
+
+@keyframes translateX {
+  0% {
+    transform: translate3d(r(750), 0, 0);
+  }
+  100% {
+    transform: translate3d(r(-750), 0, 0);
   }
 }

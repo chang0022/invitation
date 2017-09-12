@@ -12,3 +12,11 @@ Mock.mock(/\/api\/test/, {
     "message": "ok",
     "data": null
 });
+
+Mock.mock(/\/server\/barrage/, {
+    "code": 200,
+    "message": "ok",
+    "data|20": [
+        "@csentence()"
+    ]
+});

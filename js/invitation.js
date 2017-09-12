@@ -327,7 +327,7 @@ $(function () {
         data.name = form.find('input[name="vip"]').val();
         data.number = form.find('input[name="attendNumber"]').val();
         data.type = 1;
-        if (!name) return errorMsg('姓名不能为空');
+        if (!data.name) return errorMsg('姓名不能为空');
         ajaxData(data);
     });
 
@@ -335,9 +335,10 @@ $(function () {
         var form = $('.blessing-form');
         var data = {};
         data.name = form.find('input[name="vip"]').val();
-        data.number = form.find('input[name="blessing"]').val();
+        data.blessing = form.find('textarea[name="blessing"]').val();
         data.type = 2;
-        if (!name) return errorMsg('姓名不能为空');
+        if (!data.name) return errorMsg('姓名不能为空');
+        if (!data.blessing) return errorMsg('祝福一下呗~');
         ajaxData(data);
     });
 

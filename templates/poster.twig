@@ -1,0 +1,51 @@
+{# template/poster.twig #}
+{% extends 'base.twig' %}
+
+{% block body %}
+<div id="container" class="poster-container">
+    <div id="scene" class="scene">
+        <div class="barrager" id="J_barrager"></div>
+        <div data-depth="1.00"><img src="{{assets}}/img/poster/poster-2.png" class="scene-img"></div>
+        <div data-depth-x="-0.60" data-depth-y="0.80"><img src="{{assets}}/img/poster/poster-7.png" class="scene-img"></div>
+        <div data-depth="0.60"><img src="{{assets}}/img/poster/poster-6.png" class="scene-img"></div>
+        <div data-depth-x="-0.20" data-depth-y="0.40"><img src="{{assets}}/img/poster/poster-5.png" class="scene-img"></div>
+        <div data-depth="0.30"><img src="{{assets}}/img/poster/poster-3.png" class="scene-img"></div>
+        <div data-depth-x="-1.00" data-depth-y="0.10"><img src="{{assets}}/img/poster/poster-4.png" class="scene-img"></div>
+        <div data-depth-x="-0.60" data-depth-y="0.80">
+            <div class="scene-mask">
+                <div class="scene-matting">
+                    <div id="J_countdown" class="countdown-content">
+                        <div class="dash days_dash">
+                            <span class="dash_title dash_title-white">天</span>
+                            <div class="digit">0</div>
+                            <div class="digit">0</div>
+                        </div>
+                        <div class="dash hours_dash">
+                            <span class="dash_title">时</span>
+                            <div class="digit">0</div>
+                            <div class="digit">0</div>
+                        </div>
+                        <div class="dash minutes_dash">
+                            <span class="dash_title">分</span>
+                            <div class="digit">0</div>
+                            <div class="digit">0</div>
+                        </div>
+                        <div class="dash seconds_dash">
+                            <span class="dash_title">秒</span>
+                            <div class="digit">0</div>
+                            <div class="digit">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script src="https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+<script src="{{assets}}/lib/parallax.min.js"></script>
+<script src="{{assets}}/lib/jquery.countdown.min.js"></script>
+<script src="{{assets}}/js/poster.js?v={{timestamp}}"></script>
+{% endblock %}

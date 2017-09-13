@@ -4,7 +4,7 @@ $(function () {
     var GUEST = {
         id: 'other',
         name: '' || '我的朋友',
-        avatar: '' || '/img/avatar-2.jpg'
+        avatar: '' || QI_NIU +'/img/avatar-2.jpg'
     };
 
     var _dialog = {};
@@ -13,8 +13,8 @@ $(function () {
     function geneDialog(user) {
         var _master = {};
         var defaultMembers = {
-            neo: {id: 'neo', name: '常鸿飞', avatar: '/img/avatar-1.png'},
-            man: {id: 'neo', name: '冯蔓', avatar: '/img/avatar-2.jpg'}
+            neo: {id: 'neo', name: '常鸿飞', avatar: QI_NIU +'/img/avatar-1.jpg'},
+            man: {id: 'neo', name: '冯蔓', avatar: QI_NIU +'/img/avatar-2.jpg'}
         };
         _members = $.extend(_members, defaultMembers);
 
@@ -28,7 +28,7 @@ $(function () {
                 type: 'picture',
                 extra: 'emoji',
                 author: _master,
-                content: "/img/wai.gif"
+                content: QI_NIU + "/img/wai.gif"
             },
             {
                 type: 'plain',
@@ -43,7 +43,8 @@ $(function () {
             {
                 type: 'plain',
                 author: _master,
-                content: "哈哈，意不意外。"
+                content: "哈哈，谢谢谢谢。",
+                pause: 2000
             },
             {
                 type: 'plain',
@@ -55,43 +56,44 @@ $(function () {
                 type: 'picture',
                 extra: 'width',
                 author: _master,
-                content: "/img/photo/photo-1.jpg"
+                content: QI_NIU + "/photo-1.jpg"
             },
             {
                 type: 'picture',
                 extra: 'width',
                 author: _master,
-                content: "/img/photo/photo-2.jpg"
+                content: QI_NIU + "/photo-2.jpg"
             },
             {
                 type: 'picture',
                 extra: 'width',
                 author: _master,
-                content: "/img/photo/photo-3.jpg"
+                content: QI_NIU + "/photo-3.jpg"
             },
             {
                 type: 'picture',
                 extra: 'width',
                 author: _master,
-                content: "/img/photo/photo-4.jpg"
+                content: QI_NIU + "/photo-4.jpg"
             },
             {
                 type: 'picture',
                 extra: 'width',
                 author: _master,
-                content: "/img/photo/photo-5.jpg"
+                content: QI_NIU + "/photo-5.jpg"
             },
             {
                 type: 'picture',
                 extra: 'width',
                 author: _master,
-                content: "/img/photo/photo-6.jpg"
+                content: QI_NIU + "/photo-6.jpg"
             },
             {
                 type: 'picture',
                 extra: 'width',
                 author: _master,
-                content: "/img/photo/photo-7.jpg"
+                content: QI_NIU + "/photo-7.jpg",
+                pause: 2000
             }
         ];
 
@@ -118,7 +120,7 @@ $(function () {
             {
                 type: 'map',
                 author: _master,
-                content: "/img/map.png"
+                content: QI_NIU + "/img/map.png"
             },
             {
                 type: 'invite',
@@ -313,7 +315,7 @@ $(function () {
         var $target = $(this);
         var imgUrl = $target.attr('src');
         if (imgUrl) {
-            $pic.append('<img src="' + imgUrl + '" style="display: none;">');
+            $pic.append('<img src="' + imgUrl.replace(/.clouddn.com/, '.clouddn.com/big') + '" style="display: none;">');
             $pic.imagesLoaded(function () {
                 $pic.find('.heartbeat-loader').hide();
                 $pic.find('img').show();
@@ -322,7 +324,7 @@ $(function () {
         }
     }).on("click", "#J_fullPics", function () {
         $fullPics.hide();
-        $pic.find('.loading').show();
+        $pic.find('.heartbeat-loader').show();
         $pic.find('img').remove();
     }).on('click', '#J_showMap', function () {
         $('#J_iframe').addClass('bounceInUp');

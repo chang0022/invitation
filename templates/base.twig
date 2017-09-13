@@ -16,4 +16,108 @@
   {% block body %}{% endblock %}
 </body>
   {% block footer %}{% endblock %}
+  <script>
+      var QI_NIU = '//7xo9s0.com1.z0.glb.clouddn.com';
+  </script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <script>
+    wx.config({
+      debug: true,
+      appId: '{{signPackage.appId}}',
+      timestamp: {{signPackage.timestamp}},
+      nonceStr: '{{signPackage.nonceStr}}',
+      signature: '{{signPackage.signature}}',
+      jsApiList: [
+        'onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareQZone'
+      ]
+    });
+    var wxfx = {
+      conf: {
+        title: '新婚请柬',
+        desc: '来自常鸿飞和冯蔓的新婚请柬', 
+        link: window.location.href,
+        ico: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png',
+      },
+      /**
+       * 微信分享成功
+       * @return {[type]} [description]
+       */
+      shareSuccess: function() {
+      },
+      /**
+       * 微信分享失败
+       * @return {[type]} [description]
+       */
+      shareCancel: function() {
+      },
+      initShare: function() {
+        //微信朋友圈分享
+        wx.onMenuShareTimeline({
+          title: wxfx.conf.title, // 分享标题
+          link: wxfx.conf.link, // 分享链接
+          imgUrl: wxfx.conf.ico, // 分享图标
+          success: function() {
+            wxfx.shareSuccess();
+            // 用户确认分享后执行的回调函数
+          },
+          cancel: function() {
+            wxfx.shareCancel();
+            // 用户取消分享后执行的回调函数
+          }
+        });
+        //微信朋友分享
+        wx.onMenuShareAppMessage({
+          title: wxfx.conf.title, // 分享标题
+          desc: wxfx.conf.desc,
+          link: wxfx.conf.link, // 分享链接
+          imgUrl: wxfx.conf.ico, // 分享图标
+          type: 'link', // 分享类型,music、video或link，不填默认为link
+          dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+          success: function() {
+            wxfx.shareSuccess();
+            // 用户确认分享后执行的回调函数
+          },
+          cancel: function() {
+            wxfx.shareCancel();
+            // 用户取消分享后执行的回调函数
+          }
+        });
+        //qq分享
+        wx.onMenuShareQQ({
+          title: wxfx.conf.title, // 分享标题
+          desc: wxfx.conf.desc, // 分享描述
+          link: wxfx.conf.link, // 分享链接
+          imgUrl: wxfx.conf.ico, // 分享图标
+          success: function() {
+            wxfx.shareSuccess();
+            // 用户确认分享后执行的回调函数
+          },
+          cancel: function() {
+            wxfx.shareCancel();
+            // 用户取消分享后执行的回调函数
+          }
+        });
+        //QQ空间分享
+        wx.onMenuShareQZone({
+          title: wxfx.conf.title, // 分享标题
+          desc: wxfx.conf.desc, // 分享描述
+          link: wxfx.conf.link, // 分享链接
+          imgUrl: wxfx.conf.ico, // 分享图标
+          success: function() {
+            wxfx.shareSuccess();
+            // 用户确认分享后执行的回调函数
+          },
+          cancel: function() {
+            wxfx.shareCancel();
+            // 用户取消分享后执行的回调函数
+          }
+        });
+      }
+    };
+    wx.ready(function() {
+      wxfx.initShare();
+    });
+    wx.error(function(res) {
+    });
+  </script>
 </html>

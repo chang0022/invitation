@@ -5,12 +5,12 @@
 <div id="container" class="poster-container">
     <div id="scene" class="scene">
         <div class="barrager" id="J_barrager"></div>
-        <div data-depth="1.00"><img src="{{assets}}/img/poster/poster-2.png" class="scene-img"></div>
-        <div data-depth-x="-0.60" data-depth-y="0.80"><img src="{{assets}}/img/poster/poster-7.png" class="scene-img"></div>
-        <div data-depth="0.60"><img src="{{assets}}/img/poster/poster-6.png" class="scene-img"></div>
-        <div data-depth-x="-0.20" data-depth-y="0.40"><img src="{{assets}}/img/poster/poster-5.png" class="scene-img"></div>
-        <div data-depth="0.30"><img src="{{assets}}/img/poster/poster-3.png" class="scene-img"></div>
-        <div data-depth-x="-1.00" data-depth-y="0.10"><img src="{{assets}}/img/poster/poster-4.png" class="scene-img"></div>
+        <div data-depth="1.00"><img src="http://7xo9s0.com1.z0.glb.clouddn.com/poster/poster-2.png" class="scene-img"></div>
+        <div data-depth-x="-0.60" data-depth-y="0.80"><img src="http://7xo9s0.com1.z0.glb.clouddn.com/poster/poster-7.png" class="scene-img"></div>
+        <div data-depth="0.60"><img src="http://7xo9s0.com1.z0.glb.clouddn.com/poster/poster-6.png" class="scene-img"></div>
+        <div data-depth-x="-0.20" data-depth-y="0.40"><img src="http://7xo9s0.com1.z0.glb.clouddn.com/poster/poster-5.png" class="scene-img"></div>
+        <div data-depth="0.30"><img src="http://7xo9s0.com1.z0.glb.clouddn.com/poster/poster-3.png" class="scene-img"></div>
+        <div data-depth-x="-1.00" data-depth-y="0.10"><img src="http://7xo9s0.com1.z0.glb.clouddn.com/poster/poster-4.png" class="scene-img"></div>
         <div data-depth-x="-0.60" data-depth-y="0.80">
             <div class="scene-mask">
                 <div class="scene-matting">
@@ -39,6 +39,13 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="replay-btn">
+        {% if page == 'girl' %}
+        <a href="/girl"><i class="iconfont icon-replay"></i></a>
+        {% else %}
+        <a href="/"><i class="iconfont icon-replay"></i></a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

@@ -8,7 +8,8 @@
   <div class="chat-time">
       <span class="chat-time-text">9月6日 上午12:00</span>
   </div>
-  <div class="message-list" id="J_msgList"></div>
+  <div class="message-list" id="J_msgList">
+  </div>
 </div>
 {# 图片弹层 #}
 <div class="full-pics" id="J_fullPics">
@@ -17,21 +18,21 @@
   </div>
 </div>
 {# 语音聊天 #}
-{% if page  %}  
+{% if page == 'girl' %}  
 <div class="full-pics full-pics-white full-pics-man" id="J_voice">
 {% else %}
 <div class="full-pics full-pics-white full-pics-neo" id="J_voice">
 {% endif %}
   <div class="voice-wrap">
       <div class="voice-avatar">
-          {% if page  %}  
-          <img src="{{assets}}/img/avatar-2.jpg" alt="冯蔓">
+          {% if page == 'girl' %}  
+          <img src="http://7xo9s0.com1.z0.glb.clouddn.com/img/avatar-2.jpg" alt="冯蔓">
           {% else %}
-          <img src="{{assets}}/img/avatar-1.png" alt="常鸿飞">
+          <img src="http://7xo9s0.com1.z0.glb.clouddn.com/img/avatar-1.jpg" alt="常鸿飞">
           {% endif %}
       </div>
       <div class="voice-user">
-          {% if page  %}  
+          {% if page == 'girl' %}  
           <p class="voice-name">冯蔓</p>
           {% else %}
           <p class="voice-name">常鸿飞</p>
@@ -75,20 +76,20 @@
 </div>
 {# 音频资源 #}
 <audio id="message-push-music" preload>
-    <source src="{{assets}}/music/msg.mp3" type="audio/mp3">
+    <source src="http://7xo9s0.com1.z0.glb.clouddn.com/music/msg.mp3" type="audio/mp3">
 </audio>
 <audio id="call-out-music" loop preload>
-    <source src="{{assets}}/music/wait.mp3" type="audio/mp3">
+    <source src="http://7xo9s0.com1.z0.glb.clouddn.com/music/wait.mp3" type="audio/mp3">
 </audio>
 <audio id="connect-voice" preload>
-    {% if page  %}  
-    <source src="{{assets}}/music/man.mp3" type="audio/mp3">
+    {% if page == 'girl' %}  
+    <source src="http://7xo9s0.com1.z0.glb.clouddn.com/music/man.mp3" type="audio/mp3">
     {% else %}
-    <source src="{{assets}}/music/neo.mp3" type="audio/mp3">
+    <source src="http://7xo9s0.com1.z0.glb.clouddn.com/music/neo.mp3" type="audio/mp3">
     {% endif %}
 </audio>
 <audio id="cut-voice" preload>
-    <source src="{{assets}}/music/cut.mp3" type="audio/mp3">
+    <source src="http://7xo9s0.com1.z0.glb.clouddn.com/music/cut.mp3" type="audio/mp3">
 </audio>
 {# 腾讯地图 #}
 <div class="layer-iframe" id="J_iframe">
@@ -152,7 +153,7 @@
   <div class="message-wrap">
       <div class="message self">
           <div class="m-avatar">
-              <img src="{{assets}}<%= author.avatar %>" alt="<%= author.name %>">
+              <img src="<%= author.avatar %>" alt="<%= author.name %>">
           </div>
           <div class="m-content">
               <p class="author-name"><%= author.name %></p>
@@ -170,17 +171,17 @@
                       <% if (extra=="emoji") { %>
                       <div class="picture picture-emoji is-loading">
                           <span class="heartbeat-loader">Loading…</span>
-                          <img class="img-emoji" src="{{assets}}<%= content %>">
+                          <img class="img-emoji" src="<%= content %>">
                       </div>
                       <% } else if (extra=="width") { %>
                       <div class="picture picture-width is-loading">
                           <span class="heartbeat-loader">Loading…</span>
-                          <img class="img-width J_img" src="{{assets}}<%= content %>">
+                          <img class="img-width J_img" src="<%= content %>">
                       </div>
                       <% } else if (extra=="height") { %>
                       <div class="picture picture-height is-loading">
                           <span class="heartbeat-loader">Loading…</span>
-                          <img class="img-height J_img" src="{{assets}}<%= content %>">
+                          <img class="img-height J_img" src="<%= content %>">
                       </div>
                       <% } %>
                   </div>
@@ -189,10 +190,10 @@
               <div class="bubble bubble-voice">
                   <div class="b-content">
                       <div class="voice">
-                          {% if page  %}
-                              <p><i class="iconfont icon-hang"></i>聊天时长&nbsp;00:09</p>
+                          {% if page == 'girl' %}
+                          <p><i class="iconfont icon-hang"></i>聊天时长&nbsp;00:09</p>
                           {% else %}
-                              <p><i class="iconfont icon-hang"></i>聊天时长&nbsp;00:17</p>
+                          <p><i class="iconfont icon-hang"></i>聊天时长&nbsp;00:17</p>
                           {% endif %}
                       </div>
                   </div>
@@ -202,7 +203,7 @@
                   <div class="b-content">
                       <div class="picture picture-map is-loading">
                           <span class="heartbeat-loader">Loading…</span>
-                          <a href="javascript:;" id="J_showMap"><img class="img-map" src="{{assets}}<%= content %>"></a>
+                          <a href="javascript:;" id="J_showMap"><img class="img-map" src="<%= content %>"></a>
                       </div>
                   </div>
               </div>
@@ -210,7 +211,7 @@
               <div class="bubble bubble-default">
                   <div class="b-content">
                       <div class="confirm">
-                          <div class="confirm-hd"><img src="{{assets}}/img/ai.png">邀请你参加我们的婚礼<img src="{{assets}}/img/ai.png"></div>
+                          <div class="confirm-hd"><img src="http://7xo9s0.com1.z0.glb.clouddn.com/img/ai.png">邀请你参加我们的婚礼<img src="http://7xo9s0.com1.z0.glb.clouddn.com/img/ai.png"></div>
                           <div class="confirm-bd">
                               <button type="button" class="button-blue" id="J_attend">亲临现场，见证幸福 <i
                                       class="iconfont icon-youjiantou"></i></button>
@@ -231,7 +232,7 @@
 <script src="{{assets}}/lib/template-web.js"></script>
 <script>
   var MASTER = '{{page}}';
-  var POSTER_URI = '/poster';
+  var POSTER_URI = '/poster/{{page}}';
   var VISIROR = '/visitor'
 </script>
 <script src="{{assets}}/js/invitation.min.js?v={{timestamp}}"></script>

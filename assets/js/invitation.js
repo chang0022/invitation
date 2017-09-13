@@ -33,7 +33,7 @@ $(function () {
             {
                 type: 'plain',
                 author: _master,
-                content: "Hi，我。" + _master.name
+                content: "Hi，我" + _master.name + "呀"
             },
             {
                 type: 'plain',
@@ -43,24 +43,55 @@ $(function () {
             {
                 type: 'plain',
                 author: _master,
-                content: "真的，真的。"
+                content: "哈哈，意不意外。"
+            },
+            {
+                type: 'plain',
+                author: _master,
+                content: "前方高能！！！",
+                pause: 2000
             },
             {
                 type: 'picture',
                 extra: 'width',
                 author: _master,
-                content: "/img/img-1.jpg"
+                content: "/img/photo/photo-1.jpg"
             },
             {
                 type: 'picture',
-                extra: 'height',
+                extra: 'width',
                 author: _master,
-                content: "/img/img-2.jpg"
+                content: "/img/photo/photo-2.jpg"
             },
             {
-                type: 'plain',
+                type: 'picture',
+                extra: 'width',
                 author: _master,
-                content: "我还是语音和你说吧。"
+                content: "/img/photo/photo-3.jpg"
+            },
+            {
+                type: 'picture',
+                extra: 'width',
+                author: _master,
+                content: "/img/photo/photo-4.jpg"
+            },
+            {
+                type: 'picture',
+                extra: 'width',
+                author: _master,
+                content: "/img/photo/photo-5.jpg"
+            },
+            {
+                type: 'picture',
+                extra: 'width',
+                author: _master,
+                content: "/img/photo/photo-6.jpg"
+            },
+            {
+                type: 'picture',
+                extra: 'width',
+                author: _master,
+                content: "/img/photo/photo-7.jpg"
             }
         ];
 
@@ -72,7 +103,17 @@ $(function () {
             {
                 type: 'plain',
                 author: _master,
-                content: "2017年10月5日 11点58分<br>濮阳市 瑞丰园 三楼"
+                content: "具体时间地点如下："
+            },
+            {
+                type: 'plain',
+                author: _master,
+                content: "2017年10月5日 11点28分<br>濮阳市 瑞丰园 三楼"
+            },
+            {
+                type: 'plain',
+                author: _master,
+                content: "这是地图。温馨提示：关闭地图点击右上角红叉。不然要重新打开了。๑乛v乛๑"
             },
             {
                 type: 'map',

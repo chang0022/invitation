@@ -84,7 +84,7 @@
     {% if page  %}  
     <source src="{{assets}}/music/man.mp3" type="audio/mp3">
     {% else %}
-    <source src="{{assets}}/music/cut.mp3" type="audio/mp3">
+    <source src="{{assets}}/music/neo.mp3" type="audio/mp3">
     {% endif %}
 </audio>
 <audio id="cut-voice" preload>
@@ -189,7 +189,11 @@
               <div class="bubble bubble-voice">
                   <div class="b-content">
                       <div class="voice">
-                          <p><i class="iconfont icon-hang"></i>聊天时长&nbsp;00:19</p>
+                          {% if page  %}
+                              <p><i class="iconfont icon-hang"></i>聊天时长&nbsp;00:09</p>
+                          {% else %}
+                              <p><i class="iconfont icon-hang"></i>聊天时长&nbsp;00:17</p>
+                          {% endif %}
                       </div>
                   </div>
               </div>
@@ -230,5 +234,5 @@
   var POSTER_URI = '/poster';
   var VISIROR = '/visitor'
 </script>
-<script src="{{assets}}/js/invitation.js?v={{timestamp}}"></script>
+<script src="{{assets}}/js/invitation.min.js?v={{timestamp}}"></script>
 {% endblock %}

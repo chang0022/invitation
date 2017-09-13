@@ -2,7 +2,6 @@
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
-use \Psr\Http\Message\UriInterface as Uri;
 
 require 'vendor/autoload.php';
 
@@ -19,8 +18,9 @@ $container = $app->getContainer();
 $container['view'] = function ($c) {
     $view = new \Slim\Views\Twig(__DIR__ . '/templates', [
         'cache' => __DIR__ . '/cache'
+        // 'cache' => false
     ]);
-    
+
     $basePath = rtrim(str_ireplace('index.php', '', $c['request']->getUri()->getBasePath()), '/');
     $view->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));
 
@@ -48,7 +48,7 @@ $app->get('/', function (Request $request, Response $response, $args) {
     return $this->view->render($response, 'index.twig', [
         'assets' => $request->getUri()->getBaseUrl() . '/assets',
         'page' => '',
-        'timestamp' => strtotime(date('Y-d-m'))
+        'timestamp' => strtotime(date('Y-m-d h:i:sa'))
     ]);
 });
 
@@ -57,21 +57,21 @@ $app->get('/girl', function (Request $request, Response $response, $args) {
     return $this->view->render($response, 'index.twig', [
         'assets' => $request->getUri()->getBaseUrl() . '/assets',
         'page' =>  'girl',
-        'timestamp' => strtotime(date('Y-d-m'))
+        'timestamp' => strtotime(date('Y-m-d h:i:sa'))
     ]);
 });
 
 $app->get('/poster', function (Request $request, Response $response, $args) {
     return $this->view->render($response, 'poster.twig', [
         'assets' => $request->getUri()->getBaseUrl() . '/assets',
-        'timestamp' => strtotime(date('Y-d-m'))
+        'timestamp' => strtotime(date('Y-m-d h:i:sa'))
     ]);
 });
 
 $app->post('/visitor', function (Request $request, Response $response, $args) {
     try {
         $data = $request->getParsedBody();
-        
+
         $visitor = $this->db->prepare("INSERT INTO `invitation`.`visitor` (`name`, `number`, `blessing`, `type`, `belong`) VALUES (:name, :number, :blessing, :type, :belong);");
 
         $visitor->bindParam(':name', $data['name'], PDO::PARAM_INT);
@@ -80,7 +80,7 @@ $app->post('/visitor', function (Request $request, Response $response, $args) {
         $visitor->bindParam(':type', $data['type'], PDO::PARAM_INT);
         $visitor->bindParam(':belong', $data['belong'], PDO::PARAM_INT);
         $visitor->execute();
-        
+
         $response = $response->withStatus(200)->withHeader('Content-type', 'application/json');
         $response->getBody()->write(json_encode(
             [
@@ -101,13 +101,13 @@ $app->post('/visitor', function (Request $request, Response $response, $args) {
         ));
         return $response;
     }
-    
+
 });
 
 $app->get('/barrage/{type}', function (Request $request, Response $response, $args) {
     try {
         $data = $request->getParsedBody();
-        
+
         $blesses = $this->db->prepare("SELECT `blessing` FROM `invitation`.`visitor` WHERE `type` = :type;");
         $blesses->bindParam(':type', $args['type'], PDO::PARAM_INT);
         $blesses->execute();
@@ -133,7 +133,7 @@ $app->get('/barrage/{type}', function (Request $request, Response $response, $ar
         ));
         return $response;
     }
-    
+
 });
 
 $app->run();

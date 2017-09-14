@@ -1,10 +1,12 @@
 $(function () {
     FastClick.attach(document.body);
+    var VISIT = !!Cookies.get('isVisit');
+
     var master = MASTER === 'girl' ? 1 : 0;
     var GUEST = {
         id: 'other',
         name: '' || '我的朋友',
-        avatar: '' || QI_NIU +'/img/avatar-2.jpg'
+        avatar: '' || QI_NIU + '/img/avatar-2.jpg'
     };
 
     var _dialog = {};
@@ -13,8 +15,8 @@ $(function () {
     function geneDialog(user) {
         var _master = {};
         var defaultMembers = {
-            neo: {id: 'neo', name: '常鸿飞', avatar: QI_NIU +'/img/avatar-1.jpg'},
-            man: {id: 'neo', name: '冯蔓', avatar: QI_NIU +'/img/avatar-2.jpg'}
+            neo: {id: 'neo', name: '常鸿飞', avatar: QI_NIU + '/img/avatar-1.jpg'},
+            man: {id: 'neo', name: '冯蔓', avatar: QI_NIU + '/img/avatar-2.jpg'}
         };
         _members = $.extend(_members, defaultMembers);
 
@@ -38,13 +40,13 @@ $(function () {
             {
                 type: 'plain',
                 author: _master,
-                content: "告诉你一件事，我要结婚了"
+                content: "告诉你一件事，我要结婚了",
+                pause: 2000
             },
             {
                 type: 'plain',
                 author: _master,
-                content: "哈哈，谢谢谢谢。",
-                pause: 2000
+                content: "哈哈，谢谢谢谢。"
             },
             {
                 type: 'plain',
@@ -78,13 +80,13 @@ $(function () {
             },
             {
                 type: 'picture',
-                extra: 'width',
+                extra: 'height',
                 author: _master,
                 content: QI_NIU + "/photo-5.jpg"
             },
             {
                 type: 'picture',
-                extra: 'width',
+                extra: 'height',
                 author: _master,
                 content: QI_NIU + "/photo-6.jpg"
             },
@@ -126,7 +128,64 @@ $(function () {
                 type: 'invite',
                 author: _master
             }
-        ]
+        ];
+
+        _dialog.d2 = [
+            {
+                type: 'plain',
+                author: _master,
+                content: "你又肥来了。"
+            },
+            {
+                type: 'plain',
+                author: _master,
+                content: "照片忘了存了？"
+            },
+            {
+                type: 'picture',
+                extra: 'width',
+                author: _master,
+                content: QI_NIU + "/photo-7.jpg"
+            },
+            {
+                type: 'plain',
+                author: _master,
+                content: "日期地址忘记了？"
+            },
+            {
+                type: 'plain',
+                author: _master,
+                content: "2017年10月5日 11点28分<br>濮阳市 瑞丰园 三楼"
+            },
+            {
+                type: 'map',
+                author: _master,
+                content: QI_NIU + "/img/map.png"
+            },
+            {
+                type: 'plain',
+                author: _master,
+                content: "要不直接看看海报？"
+            },
+            {
+                type: 'link',
+                author: _master,
+                pause: 2000
+            },
+            {
+                type: 'plain',
+                author: _master,
+                content: "安排变卦了？"
+            },
+            {
+                type: 'invite',
+                author: _master
+            },
+            {
+                type: 'button',
+                author: _master
+            }
+        ];
     }
 
     function Queue() {
@@ -303,9 +362,14 @@ $(function () {
 
     geneDialog(master);
 
-    showDialog(_dialog['d0'], function () {
-        Voice.showVoice();
-    });
+
+    if (VISIT) {
+        showDialog(_dialog['d2']);
+    } else {
+        showDialog(_dialog['d0'], function () {
+            Voice.showVoice();
+        });
+    }
 
 
     var $fullPics = $('#J_fullPics');
@@ -336,6 +400,9 @@ $(function () {
         invitationForm.showBlessing();
     }).on('click', '#J_returnBtn', function () {
         invitationForm.closeForm();
+    }).on('click', '#J_resetBtn', function () {
+        Cookies.remove('isVisit', {path: ''});
+        window.location.reload();
     });
 
     var $layerForm = $('.layer-form');

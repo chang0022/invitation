@@ -90,7 +90,9 @@ $app->post('/visitor', function (Request $request, Response $response, $args) {
         $visitor->bindParam(':type', $data['type'], PDO::PARAM_INT);
         $visitor->bindParam(':belong', $data['belong'], PDO::PARAM_INT);
         $visitor->execute();
-        
+
+        if(empty($_COOKIE['isVisit'])) setcookie('isVisit', time(), time()+7*24*3600);
+
         $response = $response->withStatus(200)->withHeader('Content-type', 'application/json');
         $response->getBody()->write(json_encode(
             [

@@ -1,0 +1,65 @@
+{# template/result.twig #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>统计结果</title>
+    <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css" rel="stylesheet">
+    <link href="https://cdn.lmjia.cn/invite/bootstrap.min.css" rel="stylesheet">
+</head>
+<body ontouchstart>
+<div class="weui-tab">
+    <div class="weui-navbar">
+        <a class="weui-navbar__item weui-bar__item--on" href="#tab1">参加</a>
+        <a class="weui-navbar__item" href="#tab2">祝福</a>
+    </div>
+    <div class="weui-tab__bd">
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>人数</th>
+                    <th>来自</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for visitor in visitors %}
+                    <tr>
+                        <td>{{ visitor.name }}</td>
+                        <td>{{ visitor.number }}</td>
+                        <td>{{ visitor.belong == 0 ? '老常' : '小冯' }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div id="tab2" class="weui-tab__bd-item">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>祝福</th>
+                    <th>来自</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for blesses in blessings %}
+                    <tr>
+                        <td>{{ blesses.name }}</td>
+                        <td>{{ blesses.blessing }}</td>
+                        <td>{{ blesses.belong == 0 ? '老常' : '小冯' }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
+</html>

@@ -2,6 +2,40 @@ $(function () {
     FastClick.attach(document.body);
     var VISIT = !!Cookies.get('isVisit');
 
+    var Device = {
+        ua: navigator.userAgent.toLowerCase(),
+        isWeixin: function () {
+            return /micromessenger/.test(this.ua);
+        },
+        isAndroid: function () {
+            return /android/.test(this.ua);
+        }
+    };
+    if (Device.isAndroid()) {
+        $('audio').each(function () {
+            $(this).attr('src', $(this).data('src'));
+            $(this)[0].load();
+        });
+    } else {
+        if (Device.isWeixin()) {
+            $(document).one('WeixinJSBridgeReady', function () {
+                $('audio').each(function () {
+                    $(this)[0].play();
+                    $(this).attr('src', $(this).data('src'));
+                    $(this)[0].load();
+                });
+            })
+        } else {
+            $(document).one('touchstart', function () {
+                $('audio').each(function () {
+                    $(this)[0].play();
+                    $(this).attr('src', $(this).data('src'));
+                    $(this)[0].load();
+                });
+            });
+        }
+    }
+
     var master = MASTER === 'girl' ? 1 : 0;
     var GUEST = {
         id: 'other',
@@ -287,10 +321,10 @@ $(function () {
                 return false;
             });
             $('#J_break').on('touchstart', function () {
-                self.textChangConnect();
+                self.textChangeConnect();
                 return false;
             }).on('touchend', function () {
-                self.textChangConnect();
+                self.textChangeConnect();
                 return false;
             });
         },
@@ -307,7 +341,7 @@ $(function () {
             $('#J_callOutText').toggleClass('hide');
             $('#J_hangUpText').toggleClass('hide');
         },
-        textChangConnect: function () {
+        textChangeConnect: function () {
             $('#J_connectText').toggleClass('hide');
             $('#J_hangUpText').toggleClass('hide');
         },
@@ -337,7 +371,8 @@ $(function () {
         },
         breakVoice: function () {
             var self = this;
-            $('#J_breakText').removeClass('hide').siblings().addClass('hide');
+            $('#J_connectText').text('通话结束');
+            $('#J_break').off('touchstart touchend');
             var $cutVoice = $('#cut-voice');
             $cutVoice[0].play();
             $cutVoice.on('ended', function () {

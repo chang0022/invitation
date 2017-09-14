@@ -18,8 +18,9 @@ $container = $app->getContainer();
 
 $container['view'] = function ($c) {
     $view = new \Slim\Views\Twig(__DIR__ . '/templates', [
-        // 'cache' => __DIR__ . '/cache'
-        'cache' => false
+        'cache' => __DIR__ . '/cache',
+        'auto_reload' => true
+         // 'cache' => false
     ]);
     
     $basePath = rtrim(str_ireplace('index.php', '', $c['request']->getUri()->getBasePath()), '/');
@@ -146,6 +147,21 @@ $app->get('/barrage/{type}', function (Request $request, Response $response, $ar
         return $response;
     }
     
+});
+
+$app->get('/result', function (Request $request, Response $response, $args) {
+    $visitor = $this->db->prepare("SELECT * FROM `chang`.`visitor` WHERE `type` = 1;");
+    $visitor->execute();
+    $visitors = $visitor->fetchAll(PDO::FETCH_ASSOC);
+
+    $blesses = $this->db->prepare("SELECT * FROM `chang`.`visitor` WHERE `type` = 2;");
+    $blesses->execute();
+    $blessings = $blesses->fetchAll(PDO::FETCH_ASSOC);
+
+    return $this->view->render($response, 'result.twig', [
+        'visitors'=>$visitors,
+        'blessings'=>$blessings
+    ]);
 });
 
 $app->run();

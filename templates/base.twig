@@ -16,9 +16,14 @@
 <body>
 {% block body %}{% endblock %}
 </body>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
     var QI_NIU = '//7xo9s0.com1.z0.glb.clouddn.com';
+    {% if page == 'girl' %}
+    var TITLE = '💕来自冯蔓和常鸿飞的新婚请柬💐🎉💑💐🎉';
+    {% else %}
+    var TITLE = '💕来自常鸿飞和冯蔓的新婚请柬💐🎉💑💐🎉';
+    {% endif %}
     wx.config({
         debug: false,
         appId: '{{ signPackage.appId }}',
@@ -31,8 +36,8 @@
     });
     var wxfx = {
         conf: {
-            title: '💕来自常鸿飞和冯蔓的新婚请柬💐🎉💑💐🎉',
-            desc: '我们将于2017年10月05日，河南濮阳瑞丰园，11:28，举行婚礼，诚挚欢迎您的到来~',
+            title: TITLE,
+            desc: '我们将于2017年10月05日，河南省濮阳市瑞丰园，11:28，举行婚礼，诚挚欢迎您的到来~',
             link: window.location.href,
             ico: 'http://7xo9s0.com1.z0.glb.clouddn.com/thumbnail.jpg'
         },

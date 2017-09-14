@@ -9,116 +9,107 @@
     <title>来自常鸿飞和冯蔓的新婚请柬</title>
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
     <script src="https://cdn.lmjia.cn/invite/flexible.min.js"></script>
-    <link rel="stylesheet" href="{{assets}}/font/iconfont.css">
-    <link rel="stylesheet" href="{{assets}}/css/heartbeat.css">
-    <link rel="stylesheet" href="{{assets}}/css/invitation.css">
+    <link rel="stylesheet" href="{{ assets }}/font/iconfont.css">
+    <link rel="stylesheet" href="{{ assets }}/css/heartbeat.css">
+    <link rel="stylesheet" href="{{ assets }}/css/invitation.css">
 </head>
 <body>
-  {% block body %}{% endblock %}
+{% block body %}{% endblock %}
 </body>
-  {% block footer %}{% endblock %}
-  <script>
-      var QI_NIU = '//7xo9s0.com1.z0.glb.clouddn.com';
-  </script>
-  <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-  <script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    var QI_NIU = '//7xo9s0.com1.z0.glb.clouddn.com';
     wx.config({
-      debug: true,
-      appId: '{{signPackage.appId}}',
-      timestamp: {{signPackage.timestamp}},
-      nonceStr: '{{signPackage.nonceStr}}',
-      signature: '{{signPackage.signature}}',
-      jsApiList: [
-        'onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareQZone'
-      ]
+        debug: false,
+        appId: '{{ signPackage.appId }}',
+        timestamp: {{ signPackage.timestamp }},
+        nonceStr: '{{ signPackage.nonceStr }}',
+        signature: '{{ signPackage.signature }}',
+        jsApiList: [
+            'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareQZone'
+        ]
     });
     var wxfx = {
-      conf: {
-        title: '新婚请柬',
-        desc: '来自常鸿飞和冯蔓的新婚请柬', 
-        link: window.location.href,
-        ico: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png',
-      },
-      /**
-       * 微信分享成功
-       * @return {[type]} [description]
-       */
-      shareSuccess: function() {
-      },
-      /**
-       * 微信分享失败
-       * @return {[type]} [description]
-       */
-      shareCancel: function() {
-      },
-      initShare: function() {
-        //微信朋友圈分享
-        wx.onMenuShareTimeline({
-          title: wxfx.conf.title, // 分享标题
-          link: wxfx.conf.link, // 分享链接
-          imgUrl: wxfx.conf.ico, // 分享图标
-          success: function() {
-            wxfx.shareSuccess();
-            // 用户确认分享后执行的回调函数
-          },
-          cancel: function() {
-            wxfx.shareCancel();
-            // 用户取消分享后执行的回调函数
-          }
-        });
-        //微信朋友分享
-        wx.onMenuShareAppMessage({
-          title: wxfx.conf.title, // 分享标题
-          desc: wxfx.conf.desc,
-          link: wxfx.conf.link, // 分享链接
-          imgUrl: wxfx.conf.ico, // 分享图标
-          type: 'link', // 分享类型,music、video或link，不填默认为link
-          dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-          success: function() {
-            wxfx.shareSuccess();
-            // 用户确认分享后执行的回调函数
-          },
-          cancel: function() {
-            wxfx.shareCancel();
-            // 用户取消分享后执行的回调函数
-          }
-        });
-        //qq分享
-        wx.onMenuShareQQ({
-          title: wxfx.conf.title, // 分享标题
-          desc: wxfx.conf.desc, // 分享描述
-          link: wxfx.conf.link, // 分享链接
-          imgUrl: wxfx.conf.ico, // 分享图标
-          success: function() {
-            wxfx.shareSuccess();
-            // 用户确认分享后执行的回调函数
-          },
-          cancel: function() {
-            wxfx.shareCancel();
-            // 用户取消分享后执行的回调函数
-          }
-        });
-        //QQ空间分享
-        wx.onMenuShareQZone({
-          title: wxfx.conf.title, // 分享标题
-          desc: wxfx.conf.desc, // 分享描述
-          link: wxfx.conf.link, // 分享链接
-          imgUrl: wxfx.conf.ico, // 分享图标
-          success: function() {
-            wxfx.shareSuccess();
-            // 用户确认分享后执行的回调函数
-          },
-          cancel: function() {
-            wxfx.shareCancel();
-            // 用户取消分享后执行的回调函数
-          }
-        });
-      }
+        conf: {
+            title: '💕来自常鸿飞和冯蔓的新婚请柬💐🎉💑💐🎉',
+            desc: '我们将于2017年10月05日，河南濮阳瑞丰园，11:28，举行婚礼，诚挚欢迎您的到来~',
+            link: window.location.href,
+            ico: 'http://7xo9s0.com1.z0.glb.clouddn.com/thumbnail.jpg'
+        },
+        /**
+         * 微信分享成功
+         * @return {[type]} [description]
+         */
+        shareSuccess: function () {
+            console.log('谢谢分享💌');
+        },
+        /**
+         * 微信分享失败
+         * @return {[type]} [description]
+         */
+        shareCancel: function () {
+        },
+        initShare: function () {
+            //微信朋友圈分享
+            wx.onMenuShareTimeline({
+                title: wxfx.conf.title,
+                link: wxfx.conf.link,
+                imgUrl: wxfx.conf.ico,
+                success: function () {
+                    wxfx.shareSuccess();
+                },
+                cancel: function () {
+                    wxfx.shareCancel();
+                }
+            });
+            //微信朋友分享
+            wx.onMenuShareAppMessage({
+                title: wxfx.conf.title,
+                desc: wxfx.conf.desc,
+                link: wxfx.conf.link,
+                imgUrl: wxfx.conf.ico,
+                type: 'link',
+                dataUrl: '',
+                success: function () {
+                    wxfx.shareSuccess();
+                },
+                cancel: function () {
+                    wxfx.shareCancel();
+                }
+            });
+            //qq分享
+            wx.onMenuShareQQ({
+                title: wxfx.conf.title,
+                desc: wxfx.conf.desc,
+                link: wxfx.conf.link,
+                imgUrl: wxfx.conf.ico,
+                success: function () {
+                    wxfx.shareSuccess();
+                },
+                cancel: function () {
+                    wxfx.shareCancel();
+                }
+            });
+            //QQ空间分享
+            wx.onMenuShareQZone({
+                title: wxfx.conf.title,
+                desc: wxfx.conf.desc,
+                link: wxfx.conf.link,
+                imgUrl: wxfx.conf.ico,
+                success: function () {
+                    wxfx.shareSuccess();
+                },
+                cancel: function () {
+                    wxfx.shareCancel();
+                }
+            });
+        }
     };
-    wx.ready(function() {
-      wxfx.initShare();
+    wx.ready(function () {
+        wxfx.initShare();
     });
-    wx.error(function(res) {
+    wx.error(function (res) {
     });
-  </script>
+</script>
+{% block footer %}{% endblock %}
 </html>

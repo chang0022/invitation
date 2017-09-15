@@ -334,6 +334,7 @@ $(function () {
                 $callMusic[0].pause();
                 $('.js-callOut').addClass('hide');
                 $('.js-connect').removeClass('hide');
+                $('.voice-tips').addClass('voice-tips-small');
                 self.playVoice();
             });
         },
